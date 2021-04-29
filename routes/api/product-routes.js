@@ -2,12 +2,8 @@ const router = require('express').Router();
 // const { json } = require('sequelize/types');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
-
-// get all products
+// get all products, include its associated Category and Tag data
 router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
   Product.findAll({
     include: [{ model: Category }, { model: Tag }],
   }).then((productData) => {
@@ -15,10 +11,8 @@ router.get('/', (req, res) => {
   });
 });
 
-// get one product
+// get one product, include its associated Category and Tag data
 router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
   Product.findByPk(req.params.id, {
     include: [{ model: Category }, { model: Tag }],
   }).then((productData) => {
@@ -28,7 +22,6 @@ router.get('/:id', (req, res) => {
 
 // create new product
 router.post('/', (req, res) => {
-  // req.body should look like this...
   Product.create([
     {
       product_name: "Basketball",
@@ -61,7 +54,6 @@ router.post('/', (req, res) => {
 
 // update product
 router.put('/:id', (req, res) => {
-  // update product data
   Product.update(req.body, {
     where: {
       id: req.params.id,
@@ -97,13 +89,12 @@ router.put('/:id', (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
       res.status(400).json(err);
     });
 });
 
+// delete one product by its `id` value
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
   Product.destroy({
     where: {
       id: req.params.id,
