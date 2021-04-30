@@ -19,4 +19,6 @@ Click the link below to see a video of how the application works.
 
 [E-Commerce Back End](url.com)
 
-![demo pic 1](Assets/demo-pic.png)
+![demo pic 1](Assets/demo-pic2.png)
+
+![demo pic 2](Assets/demo-pic.png)
